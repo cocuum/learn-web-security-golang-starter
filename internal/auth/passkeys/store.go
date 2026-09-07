@@ -11,9 +11,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/bootdotdev/learn-web-security/internal/accounts"
-	"github.com/bootdotdev/learn-web-security/internal/database/dbgen"
-	"github.com/bootdotdev/learn-web-security/internal/identifiers"
+	"github.com/cocuum/learn-web-security/internal/accounts"
+	"github.com/cocuum/learn-web-security/internal/database/dbgen"
+	"github.com/cocuum/learn-web-security/internal/identifiers"
 	"github.com/go-webauthn/webauthn/protocol"
 	webauthn "github.com/go-webauthn/webauthn/webauthn"
 )

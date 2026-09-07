@@ -11,7 +11,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/bootdotdev/learn-web-security/internal/identifiers"
+	"github.com/cocuum/learn-web-security/internal/identifiers"
 )
 
 const (

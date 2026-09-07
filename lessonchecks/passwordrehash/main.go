@@ -12,8 +12,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/bootdotdev/learn-web-security/internal/auth/passwords"
-	"github.com/bootdotdev/learn-web-security/internal/database"
+	"github.com/cocuum/learn-web-security/internal/auth/passwords"
+	"github.com/cocuum/learn-web-security/internal/database"
 )
 
 const seededBackupCode = "a6f31c8d94e2b7504d8a1f3c6b9e2075"

@@ -10,8 +10,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/bootdotdev/learn-web-security/internal/httpx"
-	"github.com/bootdotdev/learn-web-security/internal/templates"
+	"github.com/cocuum/learn-web-security/internal/httpx"
+	"github.com/cocuum/learn-web-security/internal/templates"
 )
 
 const (

@@ -5,8 +5,8 @@ import (
 	"regexp"
 	"strconv"
 
-	"github.com/bootdotdev/learn-web-security/internal/httpx"
-	"github.com/bootdotdev/learn-web-security/internal/orders"
+	"github.com/cocuum/learn-web-security/internal/httpx"
+	"github.com/cocuum/learn-web-security/internal/orders"
 )
 
 var (

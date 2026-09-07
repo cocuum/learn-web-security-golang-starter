@@ -15,8 +15,8 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/bootdotdev/learn-web-security/internal/database/dbgen"
-	"github.com/bootdotdev/learn-web-security/internal/storage"
+	"github.com/cocuum/learn-web-security/internal/database/dbgen"
+	"github.com/cocuum/learn-web-security/internal/storage"
 	"github.com/pquerna/otp"
 	"github.com/pquerna/otp/totp"
 )

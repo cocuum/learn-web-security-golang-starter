@@ -22,9 +22,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/bootdotdev/learn-web-security/internal/database"
-	"github.com/bootdotdev/learn-web-security/internal/logging"
-	"github.com/bootdotdev/learn-web-security/internal/storage"
+	"github.com/cocuum/learn-web-security/internal/database"
+	"github.com/cocuum/learn-web-security/internal/logging"
+	"github.com/cocuum/learn-web-security/internal/storage"
 )
 
 const lessonAuthOrigin = "http://bearly-secure.test"

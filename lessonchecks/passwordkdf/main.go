@@ -7,7 +7,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/bootdotdev/learn-web-security/internal/auth/passwords"
+	"github.com/cocuum/learn-web-security/internal/auth/passwords"
 )
 
 type result struct {
