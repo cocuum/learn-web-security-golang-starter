@@ -16,7 +16,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/bootdotdev/learn-web-security/internal/database"
+	"github.com/cocuum/learn-web-security/internal/database"
 )
 
 var csrfPattern = regexp.MustCompile(`name="csrfToken"\s+type="hidden"\s+value="([^"]+)"`)

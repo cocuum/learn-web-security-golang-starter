@@ -10,8 +10,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/bootdotdev/learn-web-security/internal/database/dbgen"
-	"github.com/bootdotdev/learn-web-security/internal/uploads"
+	"github.com/cocuum/learn-web-security/internal/database/dbgen"
+	"github.com/cocuum/learn-web-security/internal/uploads"
 )
 
 const seededTaxDocumentName = "mystery-shack-tax-exemption.pdf"

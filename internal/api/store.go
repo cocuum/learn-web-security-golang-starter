@@ -10,7 +10,7 @@ import (
 	"math"
 	"time"
 
-	"github.com/bootdotdev/learn-web-security/internal/database/dbgen"
+	"github.com/cocuum/learn-web-security/internal/database/dbgen"
 )
 
 const warehouseDailyQuota = 5

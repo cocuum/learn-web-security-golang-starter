@@ -10,27 +10,27 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/bootdotdev/learn-web-security/internal/account"
-	"github.com/bootdotdev/learn-web-security/internal/accounts"
-	"github.com/bootdotdev/learn-web-security/internal/admin"
-	"github.com/bootdotdev/learn-web-security/internal/api"
-	"github.com/bootdotdev/learn-web-security/internal/assistant"
-	"github.com/bootdotdev/learn-web-security/internal/auth/mfa"
-	"github.com/bootdotdev/learn-web-security/internal/auth/passkeys"
-	"github.com/bootdotdev/learn-web-security/internal/auth/passwordreset"
-	"github.com/bootdotdev/learn-web-security/internal/cart"
-	"github.com/bootdotdev/learn-web-security/internal/checkout"
-	"github.com/bootdotdev/learn-web-security/internal/httpx"
-	"github.com/bootdotdev/learn-web-security/internal/imagepreview"
-	"github.com/bootdotdev/learn-web-security/internal/integrations/pawpal"
-	"github.com/bootdotdev/learn-web-security/internal/logging"
-	"github.com/bootdotdev/learn-web-security/internal/orders"
-	"github.com/bootdotdev/learn-web-security/internal/reviews"
-	"github.com/bootdotdev/learn-web-security/internal/storage"
-	"github.com/bootdotdev/learn-web-security/internal/storefront"
-	"github.com/bootdotdev/learn-web-security/internal/support"
-	"github.com/bootdotdev/learn-web-security/internal/templates"
-	"github.com/bootdotdev/learn-web-security/internal/uploads"
+	"github.com/cocuum/learn-web-security/internal/account"
+	"github.com/cocuum/learn-web-security/internal/accounts"
+	"github.com/cocuum/learn-web-security/internal/admin"
+	"github.com/cocuum/learn-web-security/internal/api"
+	"github.com/cocuum/learn-web-security/internal/assistant"
+	"github.com/cocuum/learn-web-security/internal/auth/mfa"
+	"github.com/cocuum/learn-web-security/internal/auth/passkeys"
+	"github.com/cocuum/learn-web-security/internal/auth/passwordreset"
+	"github.com/cocuum/learn-web-security/internal/cart"
+	"github.com/cocuum/learn-web-security/internal/checkout"
+	"github.com/cocuum/learn-web-security/internal/httpx"
+	"github.com/cocuum/learn-web-security/internal/imagepreview"
+	"github.com/cocuum/learn-web-security/internal/integrations/pawpal"
+	"github.com/cocuum/learn-web-security/internal/logging"
+	"github.com/cocuum/learn-web-security/internal/orders"
+	"github.com/cocuum/learn-web-security/internal/reviews"
+	"github.com/cocuum/learn-web-security/internal/storage"
+	"github.com/cocuum/learn-web-security/internal/storefront"
+	"github.com/cocuum/learn-web-security/internal/support"
+	"github.com/cocuum/learn-web-security/internal/templates"
+	"github.com/cocuum/learn-web-security/internal/uploads"
 )
 
 const (
@@ -236,6 +236,7 @@ func New(database *sql.DB, logger *logging.Logger, options Options) (*Applicatio
 	handler := applyMiddleware(
 		mainMux,
 		cspNonce,
+		setContentTypeOptions,
 		recoverPanics(logger, renderer),
 	)
 	return &Application{Handler: handler, publicRoot: publicRoot}, nil

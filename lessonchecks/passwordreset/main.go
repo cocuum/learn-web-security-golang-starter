@@ -13,8 +13,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/bootdotdev/learn-web-security/internal/auth/passwordreset"
-	"github.com/bootdotdev/learn-web-security/internal/database"
+	"github.com/cocuum/learn-web-security/internal/auth/passwordreset"
+	"github.com/cocuum/learn-web-security/internal/database"
 )
 
 const testChallengeToken = "bs_test_password_reset_challenge"

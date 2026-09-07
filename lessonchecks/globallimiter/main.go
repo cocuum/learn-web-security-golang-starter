@@ -19,9 +19,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/bootdotdev/learn-web-security/internal/database"
-	"github.com/bootdotdev/learn-web-security/internal/logging"
-	"github.com/bootdotdev/learn-web-security/internal/storage"
+	"github.com/cocuum/learn-web-security/internal/database"
+	"github.com/cocuum/learn-web-security/internal/logging"
+	"github.com/cocuum/learn-web-security/internal/storage"
 )
 
 func TestLessonFixedWindowRateLimiter(t *testing.T) {

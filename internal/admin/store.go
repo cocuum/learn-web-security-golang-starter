@@ -6,7 +6,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/bootdotdev/learn-web-security/internal/database/dbgen"
+	"github.com/cocuum/learn-web-security/internal/database/dbgen"
 )
 
 type Product struct {

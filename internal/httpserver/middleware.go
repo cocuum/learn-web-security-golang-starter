@@ -15,9 +15,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/bootdotdev/learn-web-security/internal/httpx"
-	"github.com/bootdotdev/learn-web-security/internal/logging"
-	"github.com/bootdotdev/learn-web-security/internal/templates"
+	"github.com/cocuum/learn-web-security/internal/httpx"
+	"github.com/cocuum/learn-web-security/internal/logging"
+	"github.com/cocuum/learn-web-security/internal/templates"
 )
 
 type middleware func(http.Handler) http.Handler
@@ -27,6 +27,13 @@ func applyMiddleware(handler http.Handler, middlewareChain ...middleware) http.H
 		handler = currentMiddleware(handler)
 	}
 	return handler
+}
+
+func setContentTypeOptions(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(responseWriter http.ResponseWriter, request *http.Request) {
+		responseWriter.Header().Set("X-Content-Type-Options", "nosniff")
+		next.ServeHTTP(responseWriter, request)
+	})
 }
 
 func permissiveCORS(next http.Handler) http.Handler {

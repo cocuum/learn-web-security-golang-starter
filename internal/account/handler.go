@@ -8,12 +8,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/bootdotdev/learn-web-security/internal/accounts"
-	"github.com/bootdotdev/learn-web-security/internal/auth/mfa"
-	"github.com/bootdotdev/learn-web-security/internal/auth/sessions"
-	"github.com/bootdotdev/learn-web-security/internal/httpx"
-	"github.com/bootdotdev/learn-web-security/internal/logging"
-	"github.com/bootdotdev/learn-web-security/internal/templates"
+	"github.com/cocuum/learn-web-security/internal/accounts"
+	"github.com/cocuum/learn-web-security/internal/auth/mfa"
+	"github.com/cocuum/learn-web-security/internal/auth/sessions"
+	"github.com/cocuum/learn-web-security/internal/httpx"
+	"github.com/cocuum/learn-web-security/internal/logging"
+	"github.com/cocuum/learn-web-security/internal/templates"
 )
 
 type pageView struct {
