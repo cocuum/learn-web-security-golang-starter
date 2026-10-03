@@ -3,6 +3,8 @@ package reviews
 import (
 	"net/http"
 	"strconv"
+	"strings"
+	"unicode/utf8"
 
 	"github.com/cocuum/learn-web-security/internal/accounts"
 	"github.com/cocuum/learn-web-security/internal/auth/sessions"
@@ -10,6 +12,8 @@ import (
 	"github.com/cocuum/learn-web-security/internal/logging"
 	"github.com/cocuum/learn-web-security/internal/templates"
 )
+
+const maxBodyLength = 1000
 
 type listPageView struct {
 	templates.Page
@@ -97,7 +101,7 @@ func (handler *Handler) Edit(responseWriter http.ResponseWriter, request *http.R
 	if !ok {
 		return
 	}
-	review, found := handler.requireReview(responseWriter, request)
+	review, found := handler.requireOwned(responseWriter, request, current.User.ID)
 	if !found {
 		return
 	}
@@ -111,7 +115,7 @@ func (handler *Handler) Update(responseWriter http.ResponseWriter, request *http
 	if !ok || !handler.verifyCSRF(responseWriter, request, current.Session.CSRFToken) {
 		return
 	}
-	review, found := handler.requireReview(responseWriter, request)
+	review, found := handler.requireOwned(responseWriter, request, current.User.ID)
 	if !found {
 		return
 	}
@@ -147,7 +151,7 @@ func (handler *Handler) Delete(responseWriter http.ResponseWriter, request *http
 	if !ok || !handler.verifyCSRF(responseWriter, request, current.Session.CSRFToken) {
 		return
 	}
-	review, found := handler.requireReview(responseWriter, request)
+	review, found := handler.requireOwned(responseWriter, request, current.User.ID)
 	if !found {
 		return
 	}
@@ -158,7 +162,7 @@ func (handler *Handler) Delete(responseWriter http.ResponseWriter, request *http
 	http.Redirect(responseWriter, request, "/account/reviews", http.StatusFound)
 }
 
-func (handler *Handler) requireReview(responseWriter http.ResponseWriter, request *http.Request) (Review, bool) {
+func (handler *Handler) requireOwned(responseWriter http.ResponseWriter, request *http.Request, userID int64) (Review, bool) {
 	reviewID, valid := httpx.ParseSafeInteger(request.PathValue("id"))
 	if !valid {
 		handler.reviewNotFound(responseWriter)
@@ -169,7 +173,7 @@ func (handler *Handler) requireReview(responseWriter http.ResponseWriter, reques
 		handler.internalError(responseWriter, request, err)
 		return Review{}, false
 	}
-	if !found {
+	if !found || review.UserID != userID {
 		handler.reviewNotFound(responseWriter)
 		return Review{}, false
 	}
@@ -233,5 +237,6 @@ func parseRating(value string) (int64, bool) {
 }
 
 func parseBody(value string) (string, bool) {
-	return value, value != ""
+	trimmedBody := strings.TrimSpace(value)
+	return trimmedBody, trimmedBody != "" && utf8.RuneCountInString(trimmedBody) <= maxBodyLength
 }
