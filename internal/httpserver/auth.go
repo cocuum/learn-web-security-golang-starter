@@ -10,6 +10,7 @@ import (
 	"github.com/cocuum/learn-web-security/internal/auth/mfa"
 	"github.com/cocuum/learn-web-security/internal/auth/passwordreset"
 	"github.com/cocuum/learn-web-security/internal/auth/passwords"
+	"github.com/cocuum/learn-web-security/internal/auth/returnto"
 	"github.com/cocuum/learn-web-security/internal/auth/sessions"
 	"github.com/cocuum/learn-web-security/internal/httpx"
 	"github.com/cocuum/learn-web-security/internal/logging"
@@ -296,7 +297,7 @@ func safeReturnTo(value string) string {
 	if value == "" {
 		return "/"
 	}
-	return value
+	return returnto.Safe(value)
 }
 
 func nullableUserID(user accounts.User, found bool) any {
