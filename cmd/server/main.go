@@ -16,6 +16,7 @@ import (
 	"github.com/cocuum/learn-web-security/internal/database"
 	"github.com/cocuum/learn-web-security/internal/httpserver"
 	"github.com/cocuum/learn-web-security/internal/logging"
+	"github.com/cocuum/learn-web-security/internal/storage"
 )
 
 func main() {
@@ -36,6 +37,7 @@ func run(ctx context.Context) error {
 		return fmt.Errorf("load configuration: %w", err)
 	}
 
+	
 	databaseConnection, err := database.Open(ctx, appConfig.DatabasePath)
 	if err != nil {
 		return err
@@ -44,12 +46,16 @@ func run(ctx context.Context) error {
 	if err := database.Migrate(ctx, databaseConnection); err != nil {
 		return err
 	}
-
+	
 	appLogger, err := logging.Open(filepath.Join(workingDirectory, "data", "bearly-secure.log"))
 	if err != nil {
 		return err
 	}
 	defer appLogger.Close()
+	encryptionKeyring, err := storage.NewKeyring(appConfig.ActiveEncryptionKeyVersion, appConfig.EncryptionKeys)
+	if err != nil {
+		return fmt.Errorf("create encryption keyring: %w", err)
+	}
 	application, err := httpserver.New(databaseConnection, appLogger, httpserver.Options{
 		AppOrigin:               appConfig.AppOrigin,
 		TrustedProxyHops:        appConfig.TrustedProxyHops,
@@ -58,6 +64,7 @@ func run(ctx context.Context) error {
 		MaxUploadBytes:          appConfig.MaxUploadBytes,
 		PawPalAPIKey:            appConfig.PawPalAPIKey,
 		AcornFulfillmentDelay:   appConfig.AcornFulfillmentDelay,
+		EncryptionKeyring:       encryptionKeyring,
 		DownloadSigningKey:      appConfig.DownloadSigningKey,
 		DataDirectory:           filepath.Join(workingDirectory, "data"),
 		FixtureDirectory:        filepath.Join(workingDirectory, "data", "fixtures"),

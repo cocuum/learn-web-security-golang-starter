@@ -12,12 +12,19 @@ import (
 const redactedValue ="[REDACTED]"
 
 var sensitiveFields = map[string]struct{}{
-	"sessionId":   {},
-    "resetToken":  {},
-	"resetLink":   {},
-    "secret":      {},
-	"adminNotes":  {},
-	"storagePath": {},
+	"sessionId":          {},
+    "resetToken":         {},
+	"resetLink":          {},
+    "secret":             {},
+	"adminNotes":         {},
+	"storagePath":        {},
+	"email":              {},
+	"shippingName":       {},
+	"shippingAddress":    {},
+	"shippingCity":       {},
+	"shippingRegion":     {},
+	"shippingPostalCode": {},
+	"originalName":       {},
 }
 
 type Logger struct {
