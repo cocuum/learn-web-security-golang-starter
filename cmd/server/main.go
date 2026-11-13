@@ -37,7 +37,6 @@ func run(ctx context.Context) error {
 		return fmt.Errorf("load configuration: %w", err)
 	}
 
-	
 	databaseConnection, err := database.Open(ctx, appConfig.DatabasePath)
 	if err != nil {
 		return err

@@ -150,7 +150,7 @@ func requireEnvironmentVariable(environment map[string]string, name string) (str
 func loadEnvironment(dotenvPath string) (map[string]string, error) {
 	environment := make(map[string]string)
 	dotenvValues, err := godotenv.Read(dotenvPath)
-	if err != nil  && !errors.Is(err, os.ErrExist) {
+	if err != nil  && !errors.Is(err, os.ErrNotExist) {
 		return nil, fmt.Errorf("read %s: %w", dotenvPath, err)
 	}
 	maps.Copy(environment, dotenvValues)

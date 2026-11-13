@@ -16,6 +16,7 @@ var (
 
 type blockedPage struct {
 	templates.Page
+	Title   string
 	Heading string
 }
 
